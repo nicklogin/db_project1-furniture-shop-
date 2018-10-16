@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Мебельный рай - изменение записи в базе данных</title>
+        <script>
+            function sendForm() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4) {
+                        if (this.status == 200) {
+                            alert("Изменения успешно записаны в базу данных");
+                        }
+                        else {
+                            alert("Ошибка! Не удалось изменить данные :(");
+                        }
+                    }
+                };
+                xhttp.open("POST", "/changeData", true);
+                var fData = new FormData(document.getElementById("dataForm"));
+                xhttp.send(fData);
+            }
+        </script>
+    </head>
+    <body>
+        <form id = "dataForm" method="POST">
+            <input type="hidden" name="action" value="commitChanges">
+            <input type="hidden" name="table" value="{{ table_name }}">
+            <input type="hidden" name="id" value="{{ row_id }}">
+            {% for col in row_data %}
+                {% if row_data[col][1] %}
+                {{col}}: 
+                    <select name="{{ col }}">
+                        {% for option in row_data[col][1] %}
+                            <option value="{{ option }}">{{ option }}</option>
+                        {% endfor %}
+                    </select><br />
+                {% else %}
+                    {{col}}: <input type = "text" name="{{ col }}" value="{{ row_data[col][0] }}"><br />
+                {% endif %}
+            {% endfor %}
+        </form>
+        <button onclick="sendForm()">Записать изменения</button><br />
+        <a href="/adminpage">Вернуться к странице просмотра и редактирования базы данных</a>
+    </body>
+</html>

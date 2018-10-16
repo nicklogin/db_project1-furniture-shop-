@@ -1,0 +1,45 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>ООО "Мебельный рай" - Книга жалоб</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='main.css')}}" />
+    <div class="title"><b>Мебельный рай</b></div>
+</head>
+<body>
+    <div class="main">
+    <div class="greeting">
+    Приносим свои извинения за доставленные неудобства. Пожалуйста, заполните форму ниже и опишите свою ситуацию, чтобы мы могли связаться
+    с вами и обсудить варианты решения проблемы.</div>
+    <form id="complaint" method="POST">
+    <div class="grid-container">
+        <div> Фамилия: </div>
+        <div><input type="text" name="surname"></div>
+        <div> Имя: </div>
+        <div><input type="text" name="name"></div>
+        <div> Отчество: </div>
+        <div><input type="text" name="patername"></div>
+        <div> Адрес электронной почты: </div>
+        <div><input type="text" name="email"></div>
+        <div> Телефон: </div>
+        <div>+7 (<input type="text" name="prefix" size="3">) <input type="text" name="number" size="7"> </div>
+        <div>Если можете вспомнить, укажите дату (в формате месяц-день-год) и примерное время покупки:</div>
+        <input type="datetime-local" name="datetime">
+        <div>Укажите название изделия: </div>
+        <div>
+            <select name="item-name">
+                {% for i in item_name_options %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="invitation">Опишите свою жалобу:</div>
+        <input type="text" class="complaintext" name="complaint_text">
+    </div>
+    <div class="submission"><input type="submit" value="Отправить жалобу"></div>
+    </form>
+</div>
+</body>
+</html>
