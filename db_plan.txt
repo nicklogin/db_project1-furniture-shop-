@@ -1,27 +1,27 @@
 Таблицы в базе данных:
  - Покупатель (customer)
     id
-    name
-    surname
-    patername
-    phone_number = +7 + prefix + number
-    email
+    name (имя)
+    surname (фамилия)
+    patername (отчество)
+    phone_number = +7 + prefix + number (номер телефона)
+    email (адрес электронной почты)
     primary key(id)
  - Предмет (item)
     id 
-    name
-    price
+    name (название)
+    price (цена)
     primary key(id)
  - Покупка (purchase)
     id
-    item_id
-    customer_id
-    time
-    date
+    item_id (id предмета)
+    customer_id (id покупателя)
+    time (время)
+    date (дата)
     primary key(id)
  - Жалоба (complaint)
     id
-    text
-    item_id
-    purchase_id
+    text (текст жалобы)
+    item_id (id предмета)
+    purchase_id (id покупки)
     primary_key(id)
